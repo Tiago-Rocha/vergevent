@@ -1,8 +1,10 @@
-var R = require('ramda');
-var fs = require('fs');
-var path = require('path');
+"use strict"; // jshint ignore:line
 
-var deepRead = R.curry(function (readFunction, dir) {
+let R = require('ramda');
+let fs = require('fs');
+let path = require('path');
+
+let deepRead = R.curry(function (readFunction, dir) {
 
   function isFile(f) {
     return fs.statSync(f).isFile();
@@ -13,14 +15,14 @@ var deepRead = R.curry(function (readFunction, dir) {
   }
 
   // Read all files in a folder.
-  var reader = R.pipe(
+  let reader = R.pipe(
     fs.readdirSync,
     R.map(concatToPath),
     R.map(R.ifElse(isFile, readFunction, deepRead(readFunction))),
     R.flatten
   );
 
-  var files = reader(dir);
+  let files = reader(dir);
 
   return files;
 });

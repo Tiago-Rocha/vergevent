@@ -1,21 +1,25 @@
-var koa = require('koa');
-var Router = require('koa-router');
-var R = require('ramda');
-var deepRead = require('deepRead');
-var path = require('path');
+"use strict"; // jshint ignore:line
 
-function * whatever() {
+
+let koa = require('koa');
+let Router = require('koa-router');
+let R = require('ramda');
+let deepRead = require('deepRead');
+let path = require('path');
+
+function* Whatever(next) {
   this.body = "Pemento";
+  yield next;
 }
 
-var app = koa();
-var router = new Router();
-router.get("/", whatever);
+let app = koa();
+let router = new Router();
+router.get("/", Whatever);
 
-var readMw = R.curry(function (servicesPath, val) {
-  var mw = require(val);
+let readMw = R.curry(function (servicesPath, val) {
+  let mw = require(val);
   mw.path = mw.path ||
-            '/' + val.replace(servicesPath, '').replace(RegExp('[.].+'),'');
+            '/' + val.replace(servicesPath, '').replace(new RegExp('[.].+'),'');
   // mw.middleware = compose([prepareWs, mw.middleware]);
   return mw;
 });
@@ -23,11 +27,11 @@ var readMw = R.curry(function (servicesPath, val) {
 function addToRouter(router) {
   return function(mw) {
     router[mw.method](mw.path, mw.middleware);
-  }
-};
+  };
+}
 
-var servicesPath = path.join(__dirname, "./api/");
-var apiFiles = deepRead(readMw(servicesPath), servicesPath);
+let servicesPath = path.join(__dirname, "./api/");
+let apiFiles = deepRead(readMw(servicesPath), servicesPath);
 
 R.forEach(addToRouter(router), apiFiles);
 

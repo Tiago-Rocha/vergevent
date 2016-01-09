@@ -4,8 +4,8 @@
   "description": "A Calendar integrator",
   "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_CONFIG_DIR=server/config NODE_PATH=server babel-node --harmony server/index.js"
+    "test": "jshint server",
+    "start": "NODE_CONFIG_DIR=server/config NODE_PATH=server node server/index.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,8 @@
     "koa": "^1.1.2",
     "koa-router": "^5.3.0",
     "ramda": "^0.19.1"
+  },
+  "devDependencies": {
+    "jshint": "^2.8.0"
   }
 }
