@@ -1,0 +1,28 @@
+Backend:
+Backend setup - 1
+Oath endpoints - 2 https://github.com/google/google-api-nodejs-client/
+Mock Data - 3
+Calendar parser - 4
+Overview Endpoint -5
+Update Candidate status endpoint - 6
+Pending Endpoint - 7
+Client List Endpoint - 8
+Rejected Endpoint -9
+
+Implement
+
+
+Frontend setup - 1
+Login Page - 2
+Login Layout -2
+Dashboard - 3
+Dashboard Menu - 3
+Dashboard Layout - 3
+Report - 6
+Report Layout - 6
+Client List - 7
+Client List Layout - 7
+Pending-  - 6
+Pending List Layout - 6
+Rejected- 8
+Rejected List Layout - 8
