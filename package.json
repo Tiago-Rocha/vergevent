@@ -23,11 +23,11 @@
   },
   "homepage": "https://github.com/Tiago-Rocha/vergevent#readme",
   "dependencies": {
-    "koa": "^1.1.2",
-    "koa-router": "^5.3.0",
     "ramda": "^0.19.1"
   },
   "devDependencies": {
-    "jshint": "^2.8.0"
+    "chai": "^3.4.1",
+    "jshint": "^2.8.0",
+    "mocha": "^2.3.4"
   }
 }

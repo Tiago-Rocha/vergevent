@@ -1,42 +1,19 @@
 "use strict"; // jshint ignore:line
 
+const http = require('http');
 
-let koa = require('koa');
-let Router = require('koa-router');
-let R = require('ramda');
-let deepRead = require('deepRead');
-let path = require('path');
+const port = 3000;
 
-function* Whatever(next) {
-  this.body = "Pemento";
-  yield next;
-}
+const server = http.createServer();
 
-let app = koa();
-let router = new Router();
-router.get("/", Whatever);
-
-let readMw = R.curry(function (servicesPath, val) {
-  let mw = require(val);
-  mw.path = mw.path ||
-            '/' + val.replace(servicesPath, '').replace(new RegExp('[.].+'),'');
-  // mw.middleware = compose([prepareWs, mw.middleware]);
-  return mw;
+server.on('listening', () => {
+  console.log(`Server started on port ${port}`);
 });
 
-function addToRouter(router) {
-  return function(mw) {
-    router[mw.method](mw.path, mw.middleware);
-  };
-}
+server.on('request', (request, response) => {
+  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.write('Hello world');
+  response.end();
+});
 
-let servicesPath = path.join(__dirname, "./api/");
-let apiFiles = deepRead(readMw(servicesPath), servicesPath);
-
-R.forEach(addToRouter(router), apiFiles);
-
-app.use(router.routes());
-
-
-
-app.listen(3000);
+server.listen(port);
