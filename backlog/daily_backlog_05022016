@@ -1,0 +1,25 @@
+Frontend:
+
+1. Schema web one page (as a React module)
+1.1 Entry page (empty page with button of log in in google) 
+1.1.1 When you hit on the button to make a request to google auth 
+
+Definition of DONE --> See a react page with a button on the screen that sends a request to google auth
+Validation --> Seeing the web page and wireshark
+
+2.Make a presentation of the user data
+2.1 Show user data
+2.2.1 react module JSON data to extract the data
+2.2 Show a log out button
+2.2.1. react Module that destroy the token and redirect to the initial page (father component)
+
+
+Backend:
+
+2. Auth on google
+2.1 Make an endpoint (GET request to process a token)
+2.1.1. With the token other request to have the user
+2.1.1.1 Process the reply to the toekn request and send it back to the frontend
+
+
+
